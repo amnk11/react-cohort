@@ -1,9 +1,51 @@
-import React from 'react'
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+
+const ROLES = ["frontend", "backend", "Ai engineer"];
 
 const HookForm = () => {
-  return (
-    <div>HookForm</div>
-  )
-}
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitSuccessful, isSubmitting },
+    getValues,
+  } = useForm({
+    defaultValues: {
+      name: "Aman",
+    },
+    mode: "onTouched",
+  });
 
-export default HookForm
+  function submit(data) {
+    return new Promise((res) => console.log("submitted", data));
+  }
+
+  if (isSubmitSuccessful) {
+    return (
+      <div>
+        <h1>Submitted successfully</h1>
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      <form onSubmit={handleSubmit(submit)}>
+        <label>
+          Full Name
+          <input {...register("name", { required: "name is required" })} />
+        </label>
+        <label>
+          Email
+          <input {...register("email", { required: "email is required" })} />
+        </label>
+
+        <button type="submit" disabled={isSubmitting}>
+          {isSubmitting ? "submitting..." : "submit"}
+        </button>
+      </form>
+    </div>
+  );
+};
+
+export default HookForm;
