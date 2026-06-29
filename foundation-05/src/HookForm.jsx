@@ -34,6 +34,7 @@ const HookForm = () => {
         <label>
           Full Name
           <input {...register("name", { required: "name is required" })} />
+          {errors.name && <span>{errors.name.message}</span>}
         </label>
         <label>
           Email
