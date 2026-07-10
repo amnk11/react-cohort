@@ -5,8 +5,14 @@ import { useSpecialChai } from "./hooks/useSpecialChai.js";
 
 function App() {
   const [data, setData] = useState(null);
-  console.log(`${import.meta.env.VITE_API_URL}`);
   const [chai, loading, error] = useSpecialChai();
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+  if (error) {
+    return <p>Error: {error.message}</p>;
+  }
 
   return (
     <main>
@@ -14,7 +20,16 @@ function App() {
         <h1>Welcome to raw react</h1>
       </header>
 
-      <ChaiMenu />
+      {/* <ChaiMenu /> */}
+      {chai ? (
+        <ul>
+          {chai.map((item) => (
+            <li key={item.id}>{item.name}</li>
+          ))}
+        </ul>
+      ) : (
+        "Loading..."
+      )}
     </main>
   );
 }

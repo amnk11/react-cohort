@@ -19,7 +19,7 @@ export function useSpecialChai() {
         setLoading(false);
       })
       .catch((err) => {
-        setError(err.message);
+        setError(err);
         setLoading(false);
       });
   }, []);
