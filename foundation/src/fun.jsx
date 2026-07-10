@@ -1,28 +1,25 @@
+const ThemeContext = createContext();
+
+function ThemeDisplay() {
+  // Use context here to get theme and toggleTheme
+  return (
+    <div id="theme-display">
+      {/* Display theme and toggle button */}
+    </div>
+  );
+}
+
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [theme, setTheme] = useState('light');
 
-  function Login() {
-    return (
-      <>
-        <p id="status">Please log in</p>
-        <button id="login-btn" onClick={() => setIsLoggedIn((prev) => !prev)}>
-          Log In
-        </button>
-      </>
-    );
-  }
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+  };
 
-  function Dashboard() {
-    return (
-      <>
-        <p id="status">Welcome back!</p>
-        <button id="logout-btn" onClick={() => setIsLoggedIn((prev) => !prev)}>
-          Log Out
-        </button>
-        <span id="badge">Online</span>
-      </>
-    );
-  }
-
-  return <div>{isLoggedIn ? <Dashboard /> : <Login />}</div>;
+  return (
+    <div>
+      {/* Wrap ThemeDisplay with Provider */}
+      <ThemeDisplay />
+    </div>
+  );
 }
