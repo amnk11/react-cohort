@@ -17,7 +17,7 @@ const App = () => {
         <main className="flex w-full flex-col items-stretch justify-center gap-6 md:flex-row md:items-start">
           <Counter />
           {/* {new Array(50).fill(null).map(()=> <Counter/>)} */}
-          <ProfileCard />
+          <ProfileCard key='aman' />
         </main>
       </div>
     </div>
